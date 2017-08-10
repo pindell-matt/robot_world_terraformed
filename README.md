@@ -1,5 +1,5 @@
-# robot_world_terraformed
-Basic CRUD App using Rocket & Elm
+# Robot World Terraformed
+## A Basic CRUD App using Rust, Rocket, & Elm
 
 To get the app started:
 ```
