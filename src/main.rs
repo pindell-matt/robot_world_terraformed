@@ -36,7 +36,7 @@ fn rocket() -> Rocket {
 
     rocket::ignite()
         .manage(pool)
-        .mount("/", routes![static_files::all])
+        .mount("/app", routes![static_files::index, static_files::all])
         .mount("/api/robots", routes![index, new, show, delete, department])
 }
 

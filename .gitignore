@@ -1,3 +1,6 @@
 /target/
 **/*.rs.bk
 .env
+**/node_modules/
+**/elm-stuff/
+**/repl-temp-*
