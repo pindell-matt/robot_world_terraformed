@@ -23,7 +23,6 @@ use std::env;
 use rocket::Rocket;
 use routes::*;
 
-/// revisit rocket/examples/json
 fn rocket() -> Rocket {
     dotenv().ok();
 
@@ -36,8 +35,9 @@ fn rocket() -> Rocket {
 
     rocket::ignite()
         .manage(pool)
-        .mount("/app", routes![static_files::index, static_files::all])
-        .mount("/api/robots", routes![index, new, show, delete, department])
+        .mount("/api/v1/", routes![index, new, show, delete, department])
+        .mount("/", routes![static_files::index, static_files::all])
+        .catch(errors![not_found])
 }
 
 fn main() {
