@@ -4,6 +4,8 @@ Inspired by the [Turing School Project - Robot World](https://github.com/turings
 
 **Still a work-in-progress, need to finish Elm app and seed database w/ Robots**
 
+[ assumes you have Rust, Elm, and PostgreSQL installed ]
+
 Setting up the database:
 ```
 echo DATABASE_URL=postgres://username:password@localhost/robot_world_terraformed > .env
