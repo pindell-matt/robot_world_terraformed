@@ -7,7 +7,7 @@ fn index() -> io::Result<NamedFile> {
     NamedFile::open("public/index.html")
 }
 
-#[get("/<file..>")]
+#[get("/<file..>", rank = 5)]
 fn all(file: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("public/").join(file)).ok()
 }

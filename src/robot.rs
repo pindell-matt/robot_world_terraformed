@@ -26,11 +26,14 @@ pub struct NewRobot {
 
 impl Robot {
     pub fn show(id: i32, conn: &PgConnection) -> Vec<Robot> {
-        all_robots.find(id).load::<Robot>(conn).unwrap()
+        all_robots.find(id).load::<Robot>(conn)
+                           .expect("Error loading Robot")
     }
 
     pub fn all(conn: &PgConnection) -> Vec<Robot> {
-        all_robots.order(robots::id.desc()).load::<Robot>(conn).unwrap()
+        all_robots.order(robots::id.desc())
+                  .load::<Robot>(conn)
+                  .expect("Error loading Robots")
     }
 
     pub fn insert(robot: NewRobot, conn: &PgConnection) -> bool {
@@ -40,7 +43,8 @@ impl Robot {
             .execute(conn).is_ok()
     }
 
-    pub fn delete_with_id(id: i32, conn: &PgConnection) -> bool {
+    pub fn delete_with_id(id: i32, conn: &PgConnection) -> bool  {
+        if Robot::show(id, conn).is_empty() { return false };
         diesel::delete(all_robots.find(id)).execute(conn).is_ok()
     }
 
@@ -48,7 +52,7 @@ impl Robot {
         all_robots
             .filter(robots::department.eq(department))
             .load::<Robot>(conn)
-            .unwrap()
+            .expect("Error loading Robots")
     }
 
 }
